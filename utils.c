@@ -12,6 +12,22 @@
 
 #include "so_long.h"
 
+void	free_map(t_game *game)
+{
+	int	i;
+
+	if (!game || !game->map)
+		return ;
+	i = 0;
+	while (game->map[i])
+	{
+		free(game->map[i]);
+		i++;
+	}
+	free(game->map);
+	game->map = NULL;
+}
+
 void	*ft_error(char *str)
 {
 	write(2, str, ft_strlen(str));

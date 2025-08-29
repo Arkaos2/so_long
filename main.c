@@ -12,13 +12,19 @@
 
 #include "so_long.h"
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	t_game game;
+	t_game	game;
+
 	if (argc != 2)
+		return (ft_error("Error\nThis program takes 1 .ber map file\n"), 1);
+	if (map_load(argv[1], &game))
 	{
-		ft_error("Error\nThis programe take 1 argument .ber\n");
-		return (0);
+		free_map(&game);
+		return (ft_error("Error\nInvalid map\n"), 1);
 	}
-	map_check(argv[1], &game);
+	free_map(&game);
+	return (0);
 }
+
+

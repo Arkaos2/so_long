@@ -12,7 +12,7 @@
 
 NAME = so_long
 
-SRCS = main.c map.c utils.c
+SRCS = main.c map.c utils.c checker.c
 OBJS = $(SRCS:.c=.o)
 
 LIBFT_DIR = libft

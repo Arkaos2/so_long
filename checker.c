@@ -51,21 +51,28 @@ int	check_elements(t_game *game)
 		return (0);
 }
 
-int check_length(t_game *game)
+int	check_length(t_game *game)
 {
-	int len;
-	int i;
+	size_t	len;
+	size_t	current;
+	int		i;
 
 	i = 0;
 	len = ft_strlen(game->map[0]);
-	while(game->map[i])
+	if (game->map[0][len - 1] == '\n')
+		len--;
+	while (game->map[i])
 	{
-		if (ft_strlen(game->map[i]) != len)
+		current = ft_strlen(game->map[i]);
+		if (game->map[i][current - 1] == '\n')
+			current--;
+		if (current != len)
 			return (0);
 		i++;
 	}
 	return (1);
 }
+
 int	check_border(t_game *game, int nb)
 {
 	int i;
@@ -90,19 +97,25 @@ int	check_border(t_game *game, int nb)
 	return (1);
 }
 
-int check_char(char *line)
+int	check_char(t_game *game)
 {
-	int i;
-	i = 0;
-	if (!line)
-		return (0);
+	int	i;
+	int	j;
 
-	while (line[i])
+	i = 0;
+	while (game->map[i])
 	{
-		if (line[i] != '0' && line[i] != '1' && line[i] != 'P' &&
-			line[i] != 'C' && line[i] != 'E')
-			return (0);
+		j = 0;
+		while (game->map[i][j])
+		{
+			if (game->map[i][j] != '0' && game->map[i][j] != '1'
+				&& game->map[i][j] != 'P' && game->map[i][j] != 'C'
+				&& game->map[i][j] != 'E')
+				return (0);
+			j++;
+		}
 		i++;
 	}
 	return (1);
 }
+
