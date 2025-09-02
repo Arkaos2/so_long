@@ -15,16 +15,31 @@
 int	main(int argc, char **argv)
 {
 	t_game	game;
+	int		nb_lines;
 
 	if (argc != 2)
-		return (ft_error("Error\nThis program takes 1 .ber map file\n"), 1);
-	if (map_load(argv[1], &game))
+		return (ft_error("Error\n: ./so_long <map.ber>"), 1);
+	game.gc = gc_new();
+	if (!game.gc)
+		return (1);
+	nb_lines = map_load(argv[1], &game);
+	if (nb_lines == -1)
 	{
-		free_map(&game);
-		return (ft_error("Error\nInvalid map\n"), 1);
+		ft_printf("Error\n: map invalide ou fichier introuvable.\n");
+		gc_destroy(game.gc);
+		return (1);
 	}
-	free_map(&game);
+	game.map_width = ft_strlen(game.map[0]);
+	game.map_height = nb_lines;
+	game.collectibles = count_collectible(&game);
+	start_game(&game);
+	load_sprites(&game);
+	draw_map(&game);
+	mlx_loop(game.mlx);
+	gc_destroy(game.gc);
 	return (0);
 }
+
+
 
 
