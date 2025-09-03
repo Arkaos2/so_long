@@ -9,7 +9,7 @@ void	flood_fill(char **map, int y, int x, int nb_lines)
 	line_len = ft_strlen(map[y]);
 	if (x < 0 || x >= line_len)
 		return ;
-	if (map[y][x] == '1' || map[y][x] == 'V')
+	if (map[y][x] == '1' || map[y][x] == 'V' || map[y][x] == 'M')
 		return ;
 	map[y][x] = 'V';
 	flood_fill(map, y + 1, x, nb_lines);

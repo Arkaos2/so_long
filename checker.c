@@ -110,7 +110,7 @@ int	check_char(t_game *game)
 		{
 			if (game->map[i][j] != '0' && game->map[i][j] != '1'
 				&& game->map[i][j] != 'P' && game->map[i][j] != 'C'
-				&& game->map[i][j] != 'E')
+				&& game->map[i][j] != 'E' && game->map[i][j] != 'M' )
 				return (0);
 			j++;
 		}

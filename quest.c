@@ -40,3 +40,12 @@ int	all_collected(t_game *game)
 		return (0);
 }
 
+int killed(t_game *game)
+{
+	if (game->map[game->y][game->x] == 'M')
+	{
+		ft_printf("Tes Mort Frérot\n");
+		return (1);
+	}
+	return (0);
+}

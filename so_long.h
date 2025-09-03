@@ -40,7 +40,7 @@ typedef struct	s_game
 	void	*mlx;
 	void	*win;
 
-
+	void	*img_monster;
 	void	*img_wall;
 	void	*img_floor;
 	void	*img_player;
@@ -87,6 +87,7 @@ void	draw_map(t_game *game);
 void	setup_hooks(t_game *game);
 void	cleanup(t_game *game);;
 
+int killed(t_game *game);
 int	count_collectible(t_game *game);
 void	collect_if_present(t_game *game);
 int	all_collected(t_game *game);

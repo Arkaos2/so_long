@@ -33,22 +33,21 @@ int	handle_key(int keycode, t_game *game)
 {
 	static int moves = 0;
 
-	if (keycode == 65307) // ESC
+	if (keycode == 65307)
 		cleanup(game);
 
-	// Déplacement
 	if (keycode == 119 || keycode == 115 || keycode == 97 || keycode == 100)
 	{
-		if (move_player(keycode, game)) // incrémente seulement si le joueur a bougé
+		if (move_player(keycode, game))
 		{
 			moves++;
 			ft_printf("Move : %d\n", moves);
 		}
 	}
-
+	if(killed(game))
+		cleanup(game);
 	return (0);
 }
-
 
 void	setup_hooks(t_game *game)
 {
