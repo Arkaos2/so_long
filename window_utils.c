@@ -56,4 +56,5 @@ void	start_game(t_game *game)
 		exit(1);
 	}
 	setup_hooks(game);
+	mlx_loop_hook(game->mlx, game_loop, game);
 }

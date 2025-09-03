@@ -25,7 +25,6 @@ int	handle_key(int keycode, t_game *game)
 		game->x += SPEED;
 	else if (keycode == 65307)
 		exit(0);
-
 	if (game->x < 0)
 		game->x = 0;
 	if (game->x > WIN_WIDTH - 1)
@@ -34,11 +33,9 @@ int	handle_key(int keycode, t_game *game)
 		game->y = 0;
 	if (game->y > WIN_HEIGHT - 1)
 		game->y = WIN_HEIGHT - 1;
-
 	return (0);
 }
 
-#define SIZE 15
 
 int	render(void *param)
 {

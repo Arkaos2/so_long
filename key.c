@@ -2,55 +2,89 @@
 
 int	move_player(int keycode, t_game *game)
 {
-	int	old_x;
-	int	old_y;
+	int	new_px;
+	int	new_py;
 
-	old_x = game->x;
-	old_y = game->y;
-	if (keycode == 119 && game->y > 0 && game->map[game->y - 1][game->x] != '1') // W
-		game->y--;
-	else if (keycode == 115 && game->y < game->map_height - 1 && game->map[game->y + 1][game->x] != '1') // S
-		game->y++;
-	else if (keycode == 97 && game->x > 0 && game->map[game->y][game->x - 1] != '1') // A
-		game->x--;
-	else if (keycode == 100 && game->x < game->map_width - 1 && game->map[game->y][game->x + 1] != '1') // D
-		game->x++;
-	collect_if_present(game);
-	if (game->map[old_y][old_x] == 'E')
-		mlx_put_image_to_window(game->mlx, game->win, game->img_exit, old_x * 32, old_y * 32);
-	else
-		mlx_put_image_to_window(game->mlx, game->win, game->img_floor, old_x * 32, old_y * 32);
-	mlx_put_image_to_window(game->mlx, game->win, game->img_player, game->x * 32, game->y * 32);
-	if (game->map[game->y][game->x] == 'E' && all_collected(game))
+	new_px = game->px;
+	new_py = game->py;
+	if (keycode == 119)
+		new_py -= SPEED;
+	else if (keycode == 115)
+		new_py += SPEED;
+	else if (keycode == 97)
+		new_px -= SPEED;
+	else if (keycode == 100)
+		new_px += SPEED;
+	if (can_move(game, new_px, new_py))
 	{
-		ft_printf("Félicitations ! Vous avez terminé le jeu.\n");
-		cleanup(game);
+		game->px = new_px;
+		game->py = new_py;
+		game->x = game->px / 32;
+		game->y = game->py / 32;
+		return (1);
 	}
-	return (old_x != game->x || old_y != game->y);
+	return (0);
 }
 
 int	handle_key(int keycode, t_game *game)
 {
-	static int moves = 0;
+	static int	moves = 0;
 
 	if (keycode == 65307)
 		cleanup(game);
-
 	if (keycode == 119 || keycode == 115 || keycode == 97 || keycode == 100)
 	{
 		if (move_player(keycode, game))
 		{
 			moves++;
 			ft_printf("Move : %d\n", moves);
+			collect_if_present(game);
+			if (game->map[game->y][game->x] == 'E' && all_collected(game))
+			{
+				ft_printf("Félicitations ! Vous avez terminé le jeu.\n");
+				cleanup(game);
+			}
 		}
 	}
-	if(killed(game))
+	if (killed(game))
 		cleanup(game);
 	return (0);
 }
 
-void	setup_hooks(t_game *game)
+void	setup_hooks(t_game *game)ssssss
 {
 	mlx_hook(game->win, 2, 1L<<0, handle_key, game);
 	mlx_hook(game->win, 17, 0, close_on_cross, game);
 }
+
+int	can_move(t_game *game, int new_px, int new_py)
+{
+	int	size;
+
+	size = 32;
+	if (new_px < 0 || new_py < 0 || new_px + size > game->map_width * 32
+		|| new_py + size > game->map_height * 32)
+		return (0);
+	if (game->map[new_py / 32][new_px / 32] == '1')
+		return (0);
+	if (game->map[new_py / 32][(new_px + size - 1) / 32] == '1')
+		return (0);
+	if (game->map[(new_py + size - 1) / 32][new_px / 32] == '1')
+		return (0);
+	if (game->map[(new_py + size - 1) / 32][(new_px + size - 1) / 32] == '1')
+		return (0);
+	return (1);
+}
+
+int	game_loop(t_game *game)
+{
+	draw_map(game);
+
+	mlx_put_image_to_window(game->mlx, game->win,
+		game->img_player, game->px, game->py);
+
+	return (0);
+}
+
+
+

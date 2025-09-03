@@ -92,4 +92,8 @@ int	count_collectible(t_game *game);
 void	collect_if_present(t_game *game);
 int	all_collected(t_game *game);
 int move_count(int keycode, t_game *game);
+void	draw_pixel(t_game *game, int x, int y);
+int	can_move(t_game *game, int new_px, int new_py);
+int	game_loop(t_game *game);
+
 #endif

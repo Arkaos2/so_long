@@ -15,10 +15,29 @@ void	load_sprites(t_game *game)
 	(void)h;
 }
 
+void	draw_pixel(t_game *game, int x, int y)
+{
+	if (game->map[y][x] == '1')
+		mlx_put_image_to_window(game->mlx, game->win,
+			game->img_wall, x * 32, y * 32);
+	else
+		mlx_put_image_to_window(game->mlx, game->win,
+			game->img_floor, x * 32, y * 32);
+	if (game->map[y][x] == 'C')
+		mlx_put_image_to_window(game->mlx, game->win,
+			game->img_collect, x * 32, y * 32);
+	else if (game->map[y][x] == 'E')
+		mlx_put_image_to_window(game->mlx, game->win,
+			game->img_exit, x * 32, y * 32);
+	else if (game->map[y][x] == 'M')
+		mlx_put_image_to_window(game->mlx, game->win,
+			game->img_monster, x * 32, y * 32);
+}
+
 void	draw_map(t_game *game)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	y = 0;
 	while (game->map[y])
@@ -26,22 +45,16 @@ void	draw_map(t_game *game)
 		x = 0;
 		while (game->map[y][x])
 		{
-			if (game->map[y][x] == '1')
-				mlx_put_image_to_window(game->mlx, game->win, game->img_wall, x * 32, y * 32);
-			else
-				mlx_put_image_to_window(game->mlx, game->win, game->img_floor, x * 32, y * 32);
-			if (game->map[y][x] == 'P')
-				mlx_put_image_to_window(game->mlx, game->win, game->img_player, x * 32, y * 32);
-			else if (game->map[y][x] == 'C')
-				mlx_put_image_to_window(game->mlx, game->win, game->img_collect, x * 32, y * 32);
-			else if (game->map[y][x] == 'E')
-				mlx_put_image_to_window(game->mlx, game->win, game->img_exit, x * 32, y * 32);
-			else if (game->map[y][x] == 'M')
-				mlx_put_image_to_window(game->mlx, game->win, game->img_monster, x * 32, y * 32);
+			draw_pixel(game, x, y);
 			x++;
 		}
 		y++;
 	}
 }
+
+
+
+
+
 
 
