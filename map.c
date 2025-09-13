@@ -6,7 +6,7 @@
 /*   By: saibelab <saibelab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 15:04:17 by saibelab          #+#    #+#             */
-/*   Updated: 2025/08/29 18:53:42 by saibelab         ###   ########.fr       */
+/*   Updated: 2025/09/13 16:49:12 by saibelab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,20 @@
 
 int	count_lines(char *filename)
 {
-	int fd;
-	int count = 0;
-	char *line;
+	int		fd;
+	int		count;
+	char	*line;
 
+	count = 0;
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 		return (-1);
-	while ((line = get_next_line(fd)))
+	line = get_next_line(fd);
+	while (line)
 	{
 		free(line);
 		count++;
+		line = get_next_line(fd);
 	}
 	close(fd);
 	return (count);
@@ -54,14 +57,16 @@ int	check_all(t_game *game, int nb)
 	}
 	return (1);
 }
+
 int	map_init(t_game *game, int fd)
 {
 	char	*line;
 	int		i;
-	int len;
+	int		len;
 
 	i = 0;
-	while ((line = get_next_line(fd)))
+	line = get_next_line(fd);
+	while (line)
 	{
 		len = ft_strlen(line);
 		if (len > 0 && line[len - 1] == '\n')
@@ -75,6 +80,7 @@ int	map_init(t_game *game, int fd)
 		ft_strlcpy(game->map[i], line, len + 1);
 		free(line);
 		i++;
+		line = get_next_line(fd);
 	}
 	game->map[i] = NULL;
 	return (0);
@@ -83,7 +89,7 @@ int	map_init(t_game *game, int fd)
 int	map_load(char *args, t_game *game)
 {
 	int	fd;
-	int nb_ligne;
+	int	nb_ligne;
 
 	nb_ligne = count_lines(args);
 	if (nb_ligne <= 0)
@@ -101,14 +107,8 @@ int	map_load(char *args, t_game *game)
 	}
 	close(fd);
 	if (!check_all(game, nb_ligne))
-	{
-		ft_printf("Debug: check_all failed\n");
 		return (-1);
-	}
 	if (!check_path(game, nb_ligne))
-	{
-		ft_printf("Debug: check_path failed\n");
 		return (-1);
-	}
 	return (nb_ligne);
 }

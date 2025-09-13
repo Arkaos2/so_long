@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   key.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: saibelab <saibelab@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/13 16:50:05 by saibelab          #+#    #+#             */
+/*   Updated: 2025/09/13 16:50:05 by saibelab         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 int	move_player(int keycode, t_game *game)
@@ -39,7 +51,7 @@ int	handle_key(int keycode, t_game *game)
 			moves++;
 			ft_printf("Move : %d\n", moves);
 			collect_if_present(game);
-			if (game->map[game->y][game->x] == 'E' && all_collected(game))
+			if (end_exit(game) && all_collected(game))
 			{
 				ft_printf("Félicitations ! Vous avez terminé le jeu.\n");
 				cleanup(game);
@@ -51,9 +63,9 @@ int	handle_key(int keycode, t_game *game)
 	return (0);
 }
 
-void	setup_hooks(t_game *game)ssssss
+void	setup_hooks(t_game *game)
 {
-	mlx_hook(game->win, 2, 1L<<0, handle_key, game);
+	mlx_hook(game->win, 2, 1L << 0, handle_key, game);
 	mlx_hook(game->win, 17, 0, close_on_cross, game);
 }
 
@@ -79,12 +91,7 @@ int	can_move(t_game *game, int new_px, int new_py)
 int	game_loop(t_game *game)
 {
 	draw_map(game);
-
 	mlx_put_image_to_window(game->mlx, game->win,
 		game->img_player, game->px, game->py);
-
 	return (0);
 }
-
-
-

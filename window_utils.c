@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   window_utils.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: saibelab <saibelab@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/13 16:44:36 by saibelab          #+#    #+#             */
+/*   Updated: 2025/09/13 16:44:36 by saibelab         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 void	cleanup(t_game *game)
@@ -41,7 +53,7 @@ void	start_game(t_game *game)
 	game->mlx = mlx_init();
 	if (!game->mlx)
 	{
-		ft_printf("Erreur: mlx_init a échoué\n");
+		ft_printf("Error\n: mlx_init a échoué\n");
 		gc_destroy(game->gc);
 		exit(1);
 	}
@@ -51,7 +63,7 @@ void	start_game(t_game *game)
 			"so_long");
 	if (!game->win)
 	{
-		ft_printf("Erreur: impossible de créer la fenêtre\n");
+		ft_printf("Error\n: impossible de créer la fenêtre\n");
 		gc_destroy(game->gc);
 		exit(1);
 	}

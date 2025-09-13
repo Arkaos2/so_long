@@ -6,7 +6,7 @@
 /*   By: saibelab <saibelab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 14:20:55 by saibelab          #+#    #+#             */
-/*   Updated: 2025/08/29 15:28:12 by saibelab         ###   ########.fr       */
+/*   Updated: 2025/09/13 16:49:36 by saibelab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,3 @@ int	main(int argc, char **argv)
 	gc_destroy(game.gc);
 	return (0);
 }
-
-
-
-

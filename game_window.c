@@ -1,16 +1,28 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   game_window.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: saibelab <saibelab@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/13 16:56:01 by saibelab          #+#    #+#             */
+/*   Updated: 2025/09/13 16:56:01 by saibelab         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
-void	load_sprites(t_game *game)
+void	load_sprites(t_game *g)
 {
-	int w;
-	int h;
+	int	w;
+	int	h;
 
-	game->img_wall = mlx_xpm_file_to_image(game->mlx, "texture/1.xpm", &w, &h);
-	game->img_floor = mlx_xpm_file_to_image(game->mlx, "texture/0.xpm", &w, &h);
-	game->img_player = mlx_xpm_file_to_image(game->mlx, "texture/p.xpm", &w, &h);
-	game->img_collect = mlx_xpm_file_to_image(game->mlx, "texture/c.xpm", &w, &h);
-	game->img_exit = mlx_xpm_file_to_image(game->mlx, "texture/e.xpm", &w, &h);
-	game->img_monster = mlx_xpm_file_to_image(game->mlx, "texture/p2.xpm", &w, &h);
+	g->img_wall = mlx_xpm_file_to_image(g->mlx, "t/1.xpm", &w, &h);
+	g->img_floor = mlx_xpm_file_to_image(g->mlx, "t/0.xpm", &w, &h);
+	g->img_player = mlx_xpm_file_to_image(g->mlx, "t/p.xpm", &w, &h);
+	g->img_collect = mlx_xpm_file_to_image(g->mlx, "t/c.xpm", &w, &h);
+	g->img_exit = mlx_xpm_file_to_image(g->mlx, "t/e.xpm", &w, &h);
+	g->img_monster = mlx_xpm_file_to_image(g->mlx, "t/m.xpm", &w, &h);
 	(void)w;
 	(void)h;
 }
@@ -51,10 +63,3 @@ void	draw_map(t_game *game)
 		y++;
 	}
 }
-
-
-
-
-
-
-

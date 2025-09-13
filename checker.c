@@ -1,12 +1,12 @@
- /* ************************************************************************** */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: saibelab <saibelab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/29 18:26:04 by saibelab          #+#    #+#             */
-/*   Updated: 2025/08/29 18:58:42 by saibelab         ###   ########.fr       */
+/*   Created: 2025/09/13 16:07:41 by saibelab          #+#    #+#             */
+/*   Updated: 2025/09/13 16:08:26 by saibelab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,20 +75,20 @@ int	check_length(t_game *game)
 
 int	check_border(t_game *game, int nb)
 {
-	int i;
-	int end;
+	int	i;
+	int	end;
 
 	nb--;
 	end = ft_strlen(game->map[0]) - 1;
 	i = 0;
-	while(i <= end)
+	while (i <= end)
 	{
 		if (game->map[0][i] != '1' || game->map[nb][i] != '1')
 			return (0);
 		i++;
 	}
 	i = 1;
-	while(i < nb)
+	while (i < nb)
 	{
 		if (game->map[i][0] != '1' || game->map[i][end] != '1')
 			return (0);
@@ -118,4 +118,3 @@ int	check_char(t_game *game)
 	}
 	return (1);
 }
-
