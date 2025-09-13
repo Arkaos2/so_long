@@ -6,7 +6,7 @@
 /*   By: saibelab <saibelab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/13 16:07:41 by saibelab          #+#    #+#             */
-/*   Updated: 2025/09/13 16:08:26 by saibelab         ###   ########.fr       */
+/*   Updated: 2025/09/13 19:02:08 by saibelab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	check_elements(t_game *game)
 		count_elements_line(game->map[i], &player, &exit, &collect);
 		i++;
 	}
-	if (player == 1 && exit && collect)
+	if (player == 1 && exit == 1 && collect)
 		return (1);
 	else
 		return (0);
