@@ -6,11 +6,11 @@
 /*   By: saibelab <saibelab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 15:50:37 by saibelab          #+#    #+#             */
-/*   Updated: 2025/04/29 16:21:47 by saibelab         ###   ########.fr       */
+/*   Updated: 2025/09/23 16:39:56 by saibelab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft.h"
+#include "libft.h"
 
 size_t	ft_strlen(const char *s)
 {

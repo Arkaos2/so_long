@@ -6,12 +6,11 @@
 /*   By: saibelab <saibelab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 14:27:26 by saibelab          #+#    #+#             */
-/*   Updated: 2025/07/02 14:28:06 by saibelab         ###   ########.fr       */
+/*   Updated: 2025/09/23 16:39:56 by saibelab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft.h"
-#include<stdio.h>
+#include "libft.h"
 
 long	ft_atol(const char *str)
 {

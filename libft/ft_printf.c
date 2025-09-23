@@ -6,12 +6,11 @@
 /*   By: saibelab <saibelab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 13:32:58 by saibelab          #+#    #+#             */
-/*   Updated: 2025/06/30 14:57:47 by saibelab         ###   ########.fr       */
+/*   Updated: 2025/09/23 16:40:36 by saibelab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
 void	ft_putchar(char c, int *count)
 {

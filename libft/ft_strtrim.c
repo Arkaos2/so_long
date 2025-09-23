@@ -6,11 +6,11 @@
 /*   By: saibelab <saibelab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 14:52:58 by saibelab          #+#    #+#             */
-/*   Updated: 2025/07/08 15:18:37 by saibelab         ###   ########.fr       */
+/*   Updated: 2025/09/23 16:39:56 by saibelab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft.h"
+#include "libft.h"
 
 static int	in_set(char c, const char *set)
 {

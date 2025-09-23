@@ -6,11 +6,11 @@
 /*   By: saibelab <saibelab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 16:55:32 by saibelab          #+#    #+#             */
-/*   Updated: 2025/05/12 15:30:13 by saibelab         ###   ########.fr       */
+/*   Updated: 2025/09/23 16:39:56 by saibelab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft.h"
+#include "libft.h"
 
 size_t	ft_strlcat(char *dest, const char *src, size_t size)
 {

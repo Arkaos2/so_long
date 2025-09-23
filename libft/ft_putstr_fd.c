@@ -6,11 +6,11 @@
 /*   By: saibelab <saibelab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 14:05:25 by saibelab          #+#    #+#             */
-/*   Updated: 2025/07/03 15:28:33 by saibelab         ###   ########.fr       */
+/*   Updated: 2025/09/23 16:39:56 by saibelab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft.h"
+#include "libft.h"
 
 void	ft_putstr_fd(char *s, int fd)
 {

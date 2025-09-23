@@ -6,12 +6,11 @@
 /*   By: saibelab <saibelab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 13:56:24 by saibelab          #+#    #+#             */
-/*   Updated: 2025/08/18 16:12:01 by saibelab         ###   ########.fr       */
+/*   Updated: 2025/09/23 16:37:37 by saibelab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft.h"
-#include<stdio.h>
+#include "libft.h"
 
 int	ft_atoi(const char *str)
 {
