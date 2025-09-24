@@ -71,7 +71,18 @@ int	all_collected(t_game *game)
 
 int	killed(t_game *game)
 {
-	if (game->map[game->y][game->x] == 'M')
+	int	x0;
+	int	y0;
+	int	x1;
+	int	y1;
+
+	y1 = (game->py + 31) / 32;
+	y0 = game->py / 32;
+	x1 = (game->px + 31) / 32;
+	x0 = game->px / 32;
+
+	if (game->map[y0][x0] == 'M' || game->map[y0][x1] == 'M' ||
+		game->map[y1][x0] == 'M' || game->map[y1][x1] == 'M')
 	{
 		ft_printf("Tes Mort Frérot\n");
 		return (1);
