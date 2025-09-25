@@ -46,19 +46,37 @@ void	collect_at(t_game *game, int x, int y)
 
 void	collect_if_present(t_game *game)
 {
-	int	x0;
-	int	y0;
-	int	x1;
-	int	y1;
+	int	center_x;
+	int	center_y;
+	int	margin;
 
-	y1 = (game->py + 31) / 32;
-	y0 = game->py / 32;
-	x1 = (game->px + 31) / 32;
-	x0 = game->px / 32;
-	collect_at(game, x0, y0);
-	collect_at(game, x1, y0);
-	collect_at(game, x0, y1);
-	collect_at(game, x1, y1);
+	margin = 8;
+	center_x = game->px + 12;
+	center_y = game->py + 12;
+	collect_in_range(game, center_x, center_y, margin);
+}
+
+void	collect_in_range(t_game *game, int center_x, int center_y, int margin)
+{
+	int	x;
+	int	y;
+
+	x = (center_x - margin) / 32;
+	y = (center_y - margin) / 32;
+	if (x >= 0 && y >= 0)
+		collect_at(game, x, y);
+	x = (center_x + margin) / 32;
+	y = (center_y - margin) / 32;
+	if (x < game->map_width && y >= 0)
+		collect_at(game, x, y);
+	x = (center_x - margin) / 32;
+	y = (center_y + margin) / 32;
+	if (x >= 0 && y < game->map_height)
+		collect_at(game, x, y);
+	x = (center_x + margin) / 32;
+	y = (center_y + margin) / 32;
+	if (x < game->map_width && y < game->map_height)
+		collect_at(game, x, y);
 }
 
 int	all_collected(t_game *game)
@@ -67,25 +85,4 @@ int	all_collected(t_game *game)
 		return (1);
 	else
 		return (0);
-}
-
-int	killed(t_game *game)
-{
-	int	x0;
-	int	y0;
-	int	x1;
-	int	y1;
-
-	y1 = (game->py + 31) / 32;
-	y0 = game->py / 32;
-	x1 = (game->px + 31) / 32;
-	x0 = game->px / 32;
-
-	if (game->map[y0][x0] == 'M' || game->map[y0][x1] == 'M' ||
-		game->map[y1][x0] == 'M' || game->map[y1][x1] == 'M')
-	{
-		ft_printf("Tes Mort Frérot\n");
-		return (1);
-	}
-	return (0);
 }

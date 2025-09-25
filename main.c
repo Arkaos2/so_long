@@ -6,7 +6,7 @@
 /*   By: saibelab <saibelab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 14:20:55 by saibelab          #+#    #+#             */
-/*   Updated: 2025/09/13 16:49:36 by saibelab         ###   ########.fr       */
+/*   Updated: 2025/09/25 13:48:22 by saibelab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,8 @@ int	main(int argc, char **argv)
 	game.map_width = ft_strlen(game.map[0]);
 	game.map_height = nb_lines;
 	game.collectibles = count_collectible(&game);
+	find_player(&game, game.map);
 	start_game(&game);
-	load_sprites(&game);
-	draw_map(&game);
 	mlx_loop(game.mlx);
 	gc_destroy(game.gc);
 	return (0);

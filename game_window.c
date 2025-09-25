@@ -63,3 +63,26 @@ void	draw_map(t_game *game)
 		y++;
 	}
 }
+
+void	redraw_area(t_game *game, int px, int py)
+{
+	int	x_start;
+	int	y_start;
+	int	x;
+	int	y;
+
+	x_start = px / 32;
+	y_start = py / 32;
+	y = y_start;
+	while (y <= (py + 31) / 32 && y < game->map_height)
+	{
+		x = x_start;
+		while (x <= (px + 31) / 32 && x < game->map_width)
+		{
+			if (x >= 0 && y >= 0)
+				draw_pixel(game, x, y);
+			x++;
+		}
+		y++;
+	}
+}

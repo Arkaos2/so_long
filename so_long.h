@@ -6,7 +6,7 @@
 /*   By: saibelab <saibelab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 14:25:11 by saibelab          #+#    #+#             */
-/*   Updated: 2025/09/13 16:42:44 by saibelab         ###   ########.fr       */
+/*   Updated: 2025/09/25 14:45:51 by saibelab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,16 +84,19 @@ int		move_player(int keycode, t_game *game);
 void	start_game(t_game *game);
 void	load_sprites(t_game *game);
 void	draw_map(t_game *game);
+void	redraw_area(t_game *game, int px, int py);
 void	setup_hooks(t_game *game);
 void	cleanup(t_game *game);;
 int		killed(t_game *game);
 int		count_collectible(t_game *game);
 void	collect_if_present(t_game *game);
+void	collect_in_range(t_game *game, int center_x, int center_y, int margin);
 int		all_collected(t_game *game);
 int		move_count(int keycode, t_game *game);
 void	draw_pixel(t_game *game, int x, int y);
+void	redraw_area(t_game *game, int px, int py);
+void	handle_movement(int keycode, t_game *game, int *moves);
 int		can_move(t_game *game, int new_px, int new_py);
-int		game_loop(t_game *game);
 int		end_exit(t_game *game);
 void	collect_at(t_game *game, int x, int y);
 

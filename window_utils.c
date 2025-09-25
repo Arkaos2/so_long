@@ -67,6 +67,9 @@ void	start_game(t_game *game)
 		gc_destroy(game->gc);
 		exit(1);
 	}
+	load_sprites(game);
 	setup_hooks(game);
-	mlx_loop_hook(game->mlx, game_loop, game);
+	draw_map(game);
+	mlx_put_image_to_window(game->mlx, game->win,
+		game->img_player, game->px, game->py);
 }

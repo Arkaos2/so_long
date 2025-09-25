@@ -38,6 +38,30 @@ int	move_player(int keycode, t_game *game)
 	return (0);
 }
 
+void	handle_movement(int keycode, t_game *game, int *moves)
+{
+	int	old_px;
+	int	old_py;
+
+	old_px = game->px;
+	old_py = game->py;
+	if (move_player(keycode, game))
+	{
+		(*moves)++;
+		ft_printf("Move : %d\n", *moves);
+		collect_if_present(game);
+		redraw_area(game, old_px, old_py);
+		redraw_area(game, game->px, game->py);
+		mlx_put_image_to_window(game->mlx, game->win,
+			game->img_player, game->px, game->py);
+		if (end_exit(game) && all_collected(game))
+		{
+			ft_printf("Félicitations ! Vous avez terminé le jeu.\n");
+			cleanup(game);
+		}
+	}
+}
+
 int	handle_key(int keycode, t_game *game)
 {
 	static int	moves = 0;
@@ -45,19 +69,7 @@ int	handle_key(int keycode, t_game *game)
 	if (keycode == 65307)
 		cleanup(game);
 	if (keycode == 119 || keycode == 115 || keycode == 97 || keycode == 100)
-	{
-		if (move_player(keycode, game))
-		{
-			moves++;
-			ft_printf("Move : %d\n", moves);
-			collect_if_present(game);
-			if (end_exit(game) && all_collected(game))
-			{
-				ft_printf("Félicitations ! Vous avez terminé le jeu.\n");
-				cleanup(game);
-			}
-		}
-	}
+		handle_movement(keycode, game, &moves);
 	if (killed(game))
 		cleanup(game);
 	return (0);
@@ -69,29 +81,23 @@ void	setup_hooks(t_game *game)
 	mlx_hook(game->win, 17, 0, close_on_cross, game);
 }
 
-int	can_move(t_game *game, int new_px, int new_py)
+int	can_move(t_game *game, int n_px, int n_py)
 {
-	int	size;
+	int	s;
+	int	z;
 
-	size = 32;
-	if (new_px < 0 || new_py < 0 || new_px + size > game->map_width * 32
-		|| new_py + size > game->map_height * 32)
+	s = 24;
+	z = 4;
+	if (n_px < 0 || n_py < 0 || n_px + 32 > game->map_width * 32
+		|| n_py + 32 > game->map_height * 32)
 		return (0);
-	if (game->map[new_py / 32][new_px / 32] == '1')
+	if (game->map[(n_py + z) / 32][(n_px + z) / 32] == '1')
 		return (0);
-	if (game->map[new_py / 32][(new_px + size - 1) / 32] == '1')
+	if (game->map[(n_py + z) / 32][(n_px + z + s - 1) / 32] == '1')
 		return (0);
-	if (game->map[(new_py + size - 1) / 32][new_px / 32] == '1')
+	if (game->map[(n_py + z + s - 1) / 32][(n_px + z) / 32] == '1')
 		return (0);
-	if (game->map[(new_py + size - 1) / 32][(new_px + size - 1) / 32] == '1')
+	if (game->map[(n_py + z + s - 1) / 32][(n_px + z + s - 1) / 32] == '1')
 		return (0);
 	return (1);
-}
-
-int	game_loop(t_game *game)
-{
-	draw_map(game);
-	mlx_put_image_to_window(game->mlx, game->win,
-		game->img_player, game->px, game->py);
-	return (0);
 }
